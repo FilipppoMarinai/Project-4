@@ -42,6 +42,15 @@ public class WebService extends Thread{
                 if(file.exists()){
                     sendBinaryFile(socket, file);
                 }
+                else if(path.equals("test")){
+                    out.writeBytes("HTTP/1.1 301 Moved Permanently\n");
+                    out.writeBytes("Location: /test/\n");
+                    out.writeBytes("\n");
+                }
+                else if(path.equals("test/")){
+                    file = new File("test/index.html");
+                    sendBinaryFile(socket, file);
+                }
                 else{
                     String stringa = "Il file non esiste";
                     out.writeBytes("HTTP/1.1 404 Not Found\n");
