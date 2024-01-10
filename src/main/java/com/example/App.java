@@ -35,7 +35,13 @@ public class App
                     message = in.readLine();
                 }
 
-                File file = new File(path);
+                File file;
+                if(path.equals("")){
+                    file = new File("test/index.html");
+                }
+                else{
+                    file = new File("test/" + path);
+                }
                 
                 try{
                     if(file.exists()){
@@ -47,6 +53,7 @@ public class App
                         out.writeBytes("Content-Length: " + stringa.length() + "\n");
                         out.writeBytes("Content-Type: text/plain\n");
                         out.writeBytes("\n");
+                        out.writeBytes(stringa);
                     }
                 }
                 catch(Exception e){
